@@ -1,0 +1,11 @@
+name: ia753
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13
+  - pip
+  - pytest
+  - black
+  - mypy
+  - pip:
+    - -r file:requirements.txt
