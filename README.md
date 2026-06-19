@@ -26,6 +26,38 @@ conda activate ia753
 pip install -r requirements.txt
 ```
 
+## Using in Google Colab
+
+You can run this project directly in Google Colab without installing anything locally. Follow these steps:
+
+1. Open [Google Colab](https://colab.research.google.com)
+
+2. In a new cell, clone the repository:
+```python
+!git clone https://github.com/<your-username>/IA753_Final_Work.git
+%cd IA753_Final_Work
+```
+
+3. Install dependencies:
+```python
+!pip install -r requirements.txt
+```
+
+4. Import and use the package:
+```python
+import sys
+sys.path.insert(0, '/content/IA753_Final_Work/src')
+
+from ia753_project import your_module
+# Use the modules from the project
+```
+
+5. If you want to save work, mount your Google Drive:
+```python
+from google.colab import drive
+drive.mount('/content/drive')
+```
+
 ### Running Tests
 
 ```bash
