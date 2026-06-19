@@ -1,0 +1,23 @@
+# Dataset Information
+
+The dataset can be accessed throught this link: https://bnci-horizon-2020.eu/database/data-sets
+
+## Upper limb movement decoding from EEG (001-2017)
+
+- **Participants**: 15
+- **Signals**: 61 EEG, 3 EOG, movement data
+- **Data**: S01_ME, S01_MI, S02_ME, S02_MI, S03_ME, S03_MI, S04_ME, S04_MI, S05_ME, S05_MI, S06_ME, S06_MI, S07_ME, S07_MI, S08_ME, S08_MI, S09_ME, S09_MI, S10_ME, S10_MI, S11_ME, S11_MI, S12_ME, S12_MI, S13_ME, S13_MI, S14_ME, S14_MI, S15_ME, S15_MI
+- **License**: [Creative Commons Attribution license (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
+- **Licensor**: Institute of Neural Engineering, Graz University of Technology
+- **Publication**: https://doi.org/10.1371/journal.pone.0182578
+- **Authors**: Patrick Ofner,Andreas Schwarz,Joana Pereira,Gernot R. Müller-Putz
+- **Description**: [data\dataset_description.pdf](..\dataset_description.pdf)
+
+## Dataset Description
+
+
+
+## Associated Publication 
+
+Ofner P, Schwarz A, Pereira J, Müller-Putz GR (2017) Upper limb movements can be decoded from the 
+time-domain of low-frequency EEG. PLOS ONE 12(8): e0182578. DOI [10.1371/journal.pone.0182578](https://doi.org/10.1371/journal.pone.0182578)
