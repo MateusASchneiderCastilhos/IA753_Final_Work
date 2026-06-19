@@ -1,9 +1,10 @@
 # Development Check
 
-Some modules (functions) in `eeg_pipeline.py` must be check one by one to garantee they are working correctly.
+
+Some modules (functions) in `eeg_pipeline.py` must be checked one by one to garantee they are working correctly.
 
 
-Check the list of what is working properly below(the list is in orded based on the data flow). Refer to `dev/testing_eeg_pipeline.ipynb` to see the checking process.
+Check the list of what is working properly below(the list is in ordered based on the data flow). Refer to `dev/testing_eeg_pipeline.ipynb` to see the checking process.
 
 
 - [X] :white_check_mark: load_raw
