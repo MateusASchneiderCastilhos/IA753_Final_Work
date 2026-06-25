@@ -64,8 +64,8 @@ SPECTRAL_BANDS: Dict[str, Tuple[float, float]] = {
 }
 
 _CONDITION_MAP: Dict[str, str] = {
-    'motor_execution': 'ME',
-    'motor_imagery':   'MI',
+    'motorexecution': 'ME',
+    'motorimagination':   'MI',
 }
 
 # ═══════════════════════════════════════════════════════════════════════════════
