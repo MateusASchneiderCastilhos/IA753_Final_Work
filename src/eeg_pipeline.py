@@ -357,7 +357,7 @@ def run_ica(
     random_state: int = 42,
     max_iter: int = 1000,
     eog_threshold: float = 3.0,
-    n_components: float = 20,
+    n_components: float = 32,
 ) -> mne.preprocessing.ICA:
     """
     Fit ICA on the high-pass filtered continuous data and automatically remove
@@ -386,9 +386,10 @@ def run_ica(
     rank reduction already present in the data due to the mastoid hardware
     reference used during recording.
     """
-    if n_components is None:
-        eeg_picks = mne.pick_types(raw.info, eeg=True, exclude='bads')
-        n_components = len(eeg_picks) - 1
+    eeg_picks = mne.pick_types(raw.info, eeg=True, exclude='bads')
+    n_eeg_picks = len(eeg_picks)
+    if n_components is None or n_components >= n_eeg_picks:
+        n_components = n_eeg_picks - 1
 
     # Infomax requires extended=True to handle both sub- and super-Gaussian sources
     fit_params = {'extended': True} if ica_method == 'infomax' else {}
@@ -472,10 +473,7 @@ def preprocess_raw(
     detect_bad_channels(raw)
 
     # Independent Component Analysis (ICA)
-    _ = run_ica(raw,
-                ica_method=ica_method,
-                n_components=None,
-                )
+    _ = run_ica(raw,ica_method=ica_method)
 
     # Low-pass FIR filter (zero-phase) at h_freq to remove high-frequency noise and 50 (or 60) Hz line noise
     end_freq = 50 - h_freq if h_freq <= 45.0 else 10
