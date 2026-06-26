@@ -41,13 +41,13 @@ EVENT_TO_CODE: Dict[str, int] = {
     "rest":            1542,
 }
 
-CODE_TO_EVENT: Dict[int, str] = {v: k for k, v in EVENT_TO_CODE.items()}
+CODE_TO_EVENT = {v: k for k, v in EVENT_TO_CODE.items()}
 
-CHANNELS_OF_INTEREST: List[str] = ["C3", "C1", "Cz", "C2", "C4"]
+CHANNELS_OF_INTEREST = ["C3", "C1", "Cz", "C2", "C4"]
 
-EOG_CHANNELS: List[str] = ["eog-l", "eog-m", "eog-r"]
+EOG_CHANNELS = ["eog-l", "eog-m", "eog-r"]
 
-EXCLUDE_CHANNELS: List[str] = [
+EXCLUDE_CHANNELS = [
     "thumb_near", "thumb_far", "thumb_index", "index_near", "index_far",
     "index_middle", "middle_near", "middle_far", "middle_ring", "ring_near",
     "ring_far", "ring_little", "litte_near", "litte_far", "thumb_palm",
@@ -58,12 +58,12 @@ EXCLUDE_CHANNELS: List[str] = [
     "Elbow", "ProSupination", "Wrist", "GripPressure",
 ]
 
-SPECTRAL_BANDS: Dict[str, Tuple[float, float]] = {
+SPECTRAL_BANDS = {
     'alpha': (8.0,  13.0),
     'beta':  (13.0, 30.0),
 }
 
-_CONDITION_MAP: Dict[str, str] = {
+_CONDITION_MAP = {
     'motorexecution': 'ME',
     'motorimagination':   'MI',
 }
@@ -466,17 +466,17 @@ def preprocess_raw(
     raw._data -= dc_offset
 
     # High-pass FIR filter (zero-phase) at l_freq to remove slow electrode drift
-    raw.filter(l_freq=l_freq, h_freq=None, method="fir", fir_window="hann", phase="zero", verbose=False)
+    raw.filter(l_freq=l_freq, h_freq=None, l_trans_bandwidth=l_freq, method="fir", fir_window="hann", phase="zero", verbose=False)
 
     # Bad Channel Detection
     detect_bad_channels(raw)
 
     # Independent Component Analysis (ICA)
-    _ = run_ica(raw, method=ica_method)
+    _ = run_ica(raw, ica_method=ica_method)
 
     # Low-pass FIR filter (zero-phase) at h_freq to remove high-frequency noise and 50 (or 60) Hz line noise
-    end_freq = 50 if h_freq <= 45.0 else 10
-    raw.filter(l_freq=None, h_freq=h_freq, trans_bandwidth=h_freq-end_freq, method="fir", fir_window="hann", phase="zero", verbose=False)
+    end_freq = 50 - h_freq if h_freq <= 45.0 else 10
+    raw.filter(l_freq=None, h_freq=h_freq, h_trans_bandwidth=end_freq, method="fir", fir_window="hann", phase="zero", verbose=False)
 
     # Interpolate bad channels using spherical spline interpolation
     raw.interpolate_bads(reset_bads=True, mode='accurate', origin='auto', method={'eeg': 'spline'}, verbose=False)
@@ -1144,7 +1144,7 @@ def main_load_and_process(
     gdf_files = sorted(data_root.rglob("*.gdf"))
     if condition_filter:
         keep_folder = next(f for f, c in _CONDITION_MAP.items() if c == condition_filter)
-        gdf_files = [p for p in gdf_files if keep_folder in p.parts]
+        gdf_files = [p for p in gdf_files if keep_folder in str(p)]
 
     if skip:
         gdf_files = [p for p in gdf_files if not any(s.lower() in str(p).lower() for s in skip)]
@@ -1162,7 +1162,7 @@ def main_load_and_process(
 
         # Infer condition from directory parts
         condition = next(
-            (cond for folder, cond in _CONDITION_MAP.items() if folder in gdf_path.parts),
+            (cond for folder, cond in _CONDITION_MAP.items() if folder in str(gdf_path)),
             None,
         )
         if condition is None:
@@ -1185,7 +1185,6 @@ def main_load_and_process(
             result = process_single_recording(
                 gdf_file=str(gdf_path),
                 condition=condition,
-                output_path=str(out_path),
                 **pipeline_kwargs,
             )
             if result is None:
