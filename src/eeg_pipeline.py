@@ -472,7 +472,10 @@ def preprocess_raw(
     detect_bad_channels(raw)
 
     # Independent Component Analysis (ICA)
-    _ = run_ica(raw, ica_method=ica_method)
+    _ = run_ica(raw,
+                ica_method=ica_method,
+                n_components=None,
+                )
 
     # Low-pass FIR filter (zero-phase) at h_freq to remove high-frequency noise and 50 (or 60) Hz line noise
     end_freq = 50 - h_freq if h_freq <= 45.0 else 10
