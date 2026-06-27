@@ -112,3 +112,9 @@ Thumbs.db
 
 # Conda
 .conda/
+
+# Data
+data/
+
+# Backup
+backup/
