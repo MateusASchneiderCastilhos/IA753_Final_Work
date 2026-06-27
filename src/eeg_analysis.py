@@ -542,7 +542,7 @@ def plot_psd_pooled(curves: Dict, condition: str, level: str,
     """PSD Fig 1 — pooled: rows {Movement, Rest} × channels."""
     who = subject if level == "subject" else "group"
     return _plot_psd_grid(curves, condition, [POOLED_LABEL, "rest"], level, subject,
-                          (0.995, 1.05), f"PSD baseline vs active — {condition} — {who} (pooled)")
+                          (0.995, 1.01), f"PSD baseline vs active — {condition} — {who} (pooled)")
 
 
 def plot_psd_per_class(curves: Dict, condition: str, level: str,
@@ -598,7 +598,7 @@ def plot_erds_per_class(curves: Dict, condition: str, level: str,
     """ERD/ERS Fig 2 — per-class: all 5 classes overlaid, 1 × channels."""
     who = subject if level == "subject" else "group"
     return _plot_erds_row(curves, condition, ANALYSIS_CLASSES, level, subject,
-                          (0.995, 1.05), f"ERD/ERS — {condition} — {who} (all classes)")
+                          (0.995, 1.12), f"ERD/ERS — {condition} — {who} (all classes)")
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -714,9 +714,9 @@ def summary_tables(df: pd.DataFrame) -> pd.DataFrame:
 # G — Orchestrator
 # ═══════════════════════════════════════════════════════════════════════════════
 
-def _save_fig(fig, path: Path) -> None:
+def _save_fig(fig, path: Path, transparent: bool = True) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(path, dpi=120, bbox_inches="tight")
+    fig.savefig(path, bbox_inches="tight", transparent=transparent)
     plt.close(fig)
 
 
@@ -775,20 +775,20 @@ def main_analysis(
             continue
         for name, fn in curve_plotters.items():
             _save_fig(fn(curves, cond, level="group"),
-                      fig_root / name / f"group_{cond}.png")
+                      fig_root / name / f"group_{cond}.svg")
             if per_subject_figs:
                 for subj in curves["subjects"][cond]:
                     _save_fig(fn(curves, cond, level="subject", subject=subj),
-                              fig_root / name / "per_subject" / f"{subj}_{cond}.png")
+                              fig_root / name / "per_subject" / f"{subj}_{cond}.svg")
 
     # ── Scalar figures ───────────────────────────────────────────────────────
     for metric in SCALAR_METRIC_ORDER:
         _save_fig(plot_scalar_box(df, metric, level="group").figure,
-                  fig_root / "scalars" / f"group_{metric}.png")
+                  fig_root / "scalars" / f"group_{metric}.svg")
         if per_subject_figs:
             for subj in sorted(df["subject"].unique()):
                 _save_fig(plot_scalar_box(df, metric, level="subject", subject=subj).figure,
-                          fig_root / "scalars" / "per_subject" / f"{subj}_{metric}.png")
+                          fig_root / "scalars" / "per_subject" / f"{subj}_{metric}.svg")
 
     # ── Summary tables ───────────────────────────────────────────────────────
     tbl_root.mkdir(parents=True, exist_ok=True)
