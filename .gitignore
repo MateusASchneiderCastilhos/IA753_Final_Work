@@ -114,7 +114,8 @@ Thumbs.db
 .conda/
 
 # Data
-data/
-
+data/motor_execution/
+data/motor_imagery/
+data_processed/
 # Backup
 backup/
