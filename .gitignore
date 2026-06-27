@@ -116,6 +116,7 @@ Thumbs.db
 # Data
 data/motor_execution/
 data/motor_imagery/
-data_processed/
+.data_processed/
+
 # Backup
 backup/
