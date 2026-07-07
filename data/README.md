@@ -1,11 +1,8 @@
 # Dataset Information
 
-
 The dataset can be accessed throught this link: https://bnci-horizon-2020.eu/database/data-sets
 
-
 ## Upper limb movement decoding from EEG (001-2017)
-
 
 - **Participants**: 15
 - **Signals**: 61 EEG, 3 EOG, movement data
@@ -14,11 +11,9 @@ The dataset can be accessed throught this link: https://bnci-horizon-2020.eu/dat
 - **Licensor**: Institute of Neural Engineering, Graz University of Technology
 - **Publication**: https://doi.org/10.1371/journal.pone.0182578
 - **Authors**: Patrick Ofner,Andreas Schwarz,Joana Pereira,Gernot R. Müller-Putz
-- **Description**: [data\dataset_description.pdf](..\dataset_description.pdf)
-
+- **Description**: [dataset_description.pdf](dataset_description.pdf)
 
 ## Associated Publication
-
 
 Ofner P, Schwarz A, Pereira J, Müller-Putz GR (2017) Upper limb movements can be decoded from the
 time-domain of low-frequency EEG. PLOS ONE 12(8): e0182578. DOI [10.1371/journal.pone.0182578](https://doi.org/10.1371/journal.pone.0182578)
