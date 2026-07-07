@@ -32,7 +32,7 @@ per_subject_figs = True      # also emit per-subject figures
 
 # ── Run processing then analysis ──────────────────────────────────────────────
 if __name__ == "__main__":
-    main_load_and_process(
+    summary = main_load_and_process(
         data_dir=data_dir,
         output_dir=output_dir,
         condition_filter=condition_filter,
@@ -40,7 +40,7 @@ if __name__ == "__main__":
         overwrite=overwrite,
     )
 
-    main_analysis(
+    df, curves = main_analysis(
         processed_root=processed_root,
         results_root=results_root,
         rebuild=rebuild,
