@@ -63,9 +63,9 @@ IA753_Final_Work/
 │   ├── README                   — dataset provenance, license, and download link
 │   ├── dataset_description.pdf   — official dataset description
 │   ├── motor_execution/         — ME recordings
-│   │   └── Sxx_ME/*.gdf          — one folder per subject, ~10 GDF runs each
+│   │   └── Sxx_ME/*.gdf          — one folder per subject with pattern `Sxx_ME`, ~10 GDF runs each. This path pattern must be accomplished to correct save processed data
 │   └── motor_imagery/           — MI recordings
-│       └── Sxx_MI/*.gdf          — one folder per subject, ~10 GDF runs each
+│       └── Sxx_MI/*.gdf          — one folder per subject with pattern `Sxx_MI`, ~10 GDF runs each. This path pattern must be accomplished to correct save processed data
 │
 ├── data_processed/              — Stage 1 output: per-run pickles, mirrors the data/ tree
 │   └── {motor_execution,motor_imagery}/Sxx_XX/processed_*.pkl
@@ -91,6 +91,45 @@ IA753_Final_Work/
 > full analysis, download the complete dataset from the BNCI Horizon 2020
 > database (see [data/README.md](data/README.md)) and place the recordings under
 > `data/motor_execution/Sxx_ME/` and `data/motor_imagery/Sxx_MI/`.
+> This data path pattern (`data/motor_execution/Sxx_ME/` or `data/motor_imagery/Sxx_MI/`) **must be follwed to correctly save the processed data**. See the example below.
+
+With the data path structure as below the data processed path structere will be as below as well.
+
+```
+data/
+├── motor_execution
+│   ├── S01_ME
+│   │    ├── motorexecution_subject1_run1.gdf
+│   │    └── motorexecution_subject1_run2.gdf
+│   └── S02_ME
+│        ├── motorexecution_subject2_run1.gdf
+│        └── motorexecution_subject2_run2.gdf
+└── motor_imagery
+    ├── S01_MI
+    │    ├── motorimagination_subject1_run1.gdf
+    │    └── motorimagination_subject2_run2.gdf
+    └── S02_MI
+         ├── motorimagination_subject2_run1.gdf
+         └── motorimagination_subject2_run2.gdf
+```
+
+```
+data_processed/
+├── motor_execution
+│   ├── S01_ME
+│   │    ├── processed_motorexecution_subject1_run1.pkl
+│   │    └── processed_motorexecution_subject1_run2.pkl
+│   └── S02_ME
+│        ├── processed_motorexecution_subject2_run1.pkl
+│        └── processed_motorexecution_subject2_run2.pkl
+└── motor_imagery
+    ├── S01_MI
+    │    ├── processed_motorimagination_subject1_run1.pkl
+    │    └── processed_motorimagination_subject2_run2.pkl
+    └── S02_MI
+         ├── processed_motorimagination_subject2_run1.pkl
+         └── processed_motorimagination_subject2_run2.pkl
+```
 
 ## Usage
 
