@@ -87,11 +87,10 @@ IA753_Final_Work/
     └── eeg_analysis.py          — Stage 2: pool runs $\to$ backbone $\to$ figures/tables
 ```
 
-> The raw `data/` recordings are just a sample of the whole dataset to educational
-> purpouses. Download them from the BNCI Horizon 2020 database (link in
-> [data/README](data/README)) and
-> place them under `data/motor_execution/Sxx_ME/` and
-> `data/motor_imagery/Sxx_MI/`.
+> In the `data/` there is no recordings due to its high size. To reproduce the
+> full analysis, download the complete dataset from the BNCI Horizon 2020
+> database (see [data/README.md](data/README.md)) and place the recordings under
+> `data/motor_execution/Sxx_ME/` and `data/motor_imagery/Sxx_MI/`.
 
 ## Usage
 
